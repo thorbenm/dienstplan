@@ -1,17 +1,19 @@
 #include <iostream>
+#include <string>
+#include <random>
+
+using namespace std;
+
+const int noh = 5;
 
 struct hebamme{
-	std::string name;
+	string name;
 	char kuerzel;
-		hebamme(std::string name1, char kuerzel1){
-		name = name1;
-		kuerzel = kuerzel1;
-		}
-};
+} heb[noh];
 
-hebamme heb1("heb1", '1');
 
 int main(){
-	std::cout << "hello world";
+
+	std::cout << random() << std::endl;
 	return 0;
 }
