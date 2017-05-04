@@ -37,7 +37,14 @@ int main(){
 //	std::cout << rand() % hebammen.size() << std::endl;
 //	std::cout << hebammen.size() << " " << hebammen.at(2).name << std::endl;
 	for(int j = 0; j<rota.size();j++){
-		rnd = rand() % hebammen.size(); 	
+		for(;;){
+			rnd = rand() % hebammen.size(); 	
+			if(j>1){
+				if(rota.at(j-1) == rnd){;}
+				else{break;}
+			}
+			else{break;}
+		}
 		rota.at(j) = rnd;
 	}
 	for(int j = 0; j<rota.size();j++){
