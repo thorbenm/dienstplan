@@ -6,12 +6,16 @@
 #include <time.h>
 #include <vector>
 
-const int noh = 3;
-
 struct hebamme{
 	std::string name;
 };
 
+int days = 30;
+int shifts = days * 2; //hardcoded to two shifts
+
+std::vector<int> rota(shifts);
+
+int rnd = 0;
 
 int main(){
 
@@ -29,7 +33,16 @@ int main(){
 	hebammen.back().name = "fuenf";
 
 	srand (time(NULL));
-	std::cout << rand() % hebammen.size() << std::endl;
-	std::cout << hebammen.size() << " " << hebammen.at(2).name << std::endl;
+//	srand (0);
+//	std::cout << rand() % hebammen.size() << std::endl;
+//	std::cout << hebammen.size() << " " << hebammen.at(2).name << std::endl;
+	for(int j = 0; j<rota.size();j++){
+		rnd = rand() % hebammen.size(); 	
+		rota.at(j) = rnd;
+	}
+	for(int j = 0; j<rota.size();j++){
+		std::cout << rota.at(j) << " ";
+	}
+	std::cout << std::endl;
 	return 0;
 }
