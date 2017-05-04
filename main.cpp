@@ -4,23 +4,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <vector>
 
 const int noh = 3;
 
 struct hebamme{
 	std::string name;
-	char kuerzel;
-} heb[noh];
+};
 
 
 int main(){
+
+	std::vector<hebamme> hebammen (1);
+	hebammen.back().name = "null";
+	hebammen.resize(hebammen.size()+1);
+	hebammen.back().name = "eins";
+	hebammen.resize(hebammen.size()+1);
+	hebammen.back().name = "zwei";
+	hebammen.resize(hebammen.size()+1);
+	hebammen.back().name = "drei";
+	hebammen.resize(hebammen.size()+1);
+	hebammen.back().name = "vier";
+	hebammen.resize(hebammen.size()+1);
+	hebammen.back().name = "fuenf";
+
 	srand (time(NULL));
-	heb[0].name = "null";	
-	heb[0].kuerzel = '0';
-	heb[1].name = "eins";	
-	heb[1].kuerzel = '1';
-	heb[2].name = "zwei";	
-	heb[2].kuerzel = '2';
-	std::cout << rand() % noh << std::endl;
+	std::cout << rand() % hebammen.size() << std::endl;
+	std::cout << hebammen.size() << " " << hebammen.at(2).name << std::endl;
 	return 0;
 }
