@@ -47,17 +47,34 @@ int main(){
 		}
 		rota.at(j) = rnd;
 	}
-	for(int j = 0; j<rota.size();j++){
-		std::cout << rota.at(j) << " ";
+	std::cout << std::endl;
+	//output:
+	std::cout << std::endl;
+	std::cout << std::endl;
+	int max_length = 0;
+		for(int j = 0; j < hebammen.size(); j++){
+			if(max_length < hebammen.at(j).name.length()){
+				max_length = hebammen.at(j).name.length();
+			}
+		}
+
+	//header:
+	for(int j = 0; j < max_length + 2; j++){
+		std::cout << " ";
+	}
+	std::cout << "|";
+	for(int j = 0; j < days ; j++){
+		if(j<10){
+			std::cout << " ";
+		}
+		std::cout << " "  << j+1;
 	}
 	std::cout << std::endl;
-	//output::
-	int max_length = 0;
-	for(int j = 0; j < hebammen.size(); j++){
-		if(max_length < hebammen.at(j).name.length()){
-			max_length = hebammen.at(j).name.length();
-		}
+
+	//spacer:
+	for(int j = 0; j < max_length + 2 + 1 + 3*days ;j++){
+		std::cout<< "=";
 	}
-	std::cout << max_length << std::endl;
+	std::cout << std::endl;
 	return 0;
 }
