@@ -51,16 +51,16 @@ int main(){
 			if(j>1){
 				if(rota.at(j-1) == rnd){
 					goto NEWRANDOM;
-				}else{;}
-			}else{;}
+				}
+			}
 
 		//no more than three shifts after one another
 
 			if(j>6){
 				if(rnd == rota.at(j-2) && rnd == rota.at(j-4) && rnd == rota.at(j-6)){
 					goto NEWRANDOM;
-				}else{;}
-			}else{;}
+				}
+			}
 
 		rota.at(j) = rnd;
 	}
@@ -69,7 +69,13 @@ int main(){
 	for(int j = 0; j < hebammen.size(); j++){
 		hebammen.at(j).dienste = 0;
 	}
-
+	for(int j = 0; j < hebammen.size(); j++){
+		for(int i = 0; i < rota.size(); i++){
+			if(rota.at(i) == j){
+				hebammen.at(j).dienste++;
+			}
+		}
+	}
 
 
 	//output:
@@ -85,7 +91,7 @@ int main(){
 	for(int j = 0; j < max_length + 2; j++){
 		std::cout << " ";
 	}
-	std::cout << "|";
+	std::cout << "| Dienste |";
 	for(int j = 0; j < days ; j++){
 		if(j<9){
 			std::cout << " ";
@@ -95,7 +101,7 @@ int main(){
 	std::cout << std::endl;
 
 	//spacer:
-	for(int j = 0; j < max_length + 2 + 1 + 3*days;j++){ 
+	for(int j = 0; j < max_length + 2 + 1 + 10 + 3*days;j++){ 
 		std::cout<< "=";
 	}
 	std::cout << std::endl;
@@ -106,7 +112,12 @@ int main(){
 		for(int j = 0; j < max_length - hebammen.at(i).name.length() + 2; j++){
 			std::cout << " ";
 		}
-		std::cout << "|";
+		std::cout << "|      ";
+		if(hebammen.at(i).dienste < 10){
+			std::cout << " ";
+		}
+		std::cout << hebammen.at(i).dienste;
+		std::cout << " |";
 		for(int j = 0 ;j < 2 * days; j+=2){
 			std::cout << "  ";	
 			if(rota.at(j) == i){
