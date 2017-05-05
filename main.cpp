@@ -51,5 +51,13 @@ int main(){
 		std::cout << rota.at(j) << " ";
 	}
 	std::cout << std::endl;
+	//output::
+	int max_length = 0;
+	for(int j = 0; j < hebammen.size(); j++){
+		if(max_length < hebammen.at(j).name.length()){
+			max_length = hebammen.at(j).name.length();
+		}
+	}
+	std::cout << max_length << std::endl;
 	return 0;
 }
