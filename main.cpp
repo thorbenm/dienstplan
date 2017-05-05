@@ -65,6 +65,10 @@ int main(){
 		rota.at(j) = rnd;
 	}
 
+	//count dienste:
+	for(int j = 0; j < hebammen.size(); j++){
+		hebammen.at(j).dienste = 0;
+	}
 
 
 
