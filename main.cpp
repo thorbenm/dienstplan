@@ -11,7 +11,7 @@ struct hebamme{
 	int dienste;
 };
 
-int days = 30;
+int days = 31;
 int shifts = days * 2; //hardcoded to two shifts
 
 std::vector<int> rota(shifts);
