@@ -8,6 +8,7 @@
 
 struct hebamme{
 	std::string name;
+	int dienste;
 };
 
 int days = 30;
@@ -31,26 +32,44 @@ int main(){
 	hebammen.back().name = "vier";
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "fuenf";
+	hebammen.resize(hebammen.size()+1);
+	hebammen.back().name = "sechs";
+	hebammen.resize(hebammen.size()+1);
+	hebammen.back().name = "sieben";
 
-	srand (time(NULL));
-//	srand (0);
-//	std::cout << rand() % hebammen.size() << std::endl;
-//	std::cout << hebammen.size() << " " << hebammen.at(2).name << std::endl;
+	long timestamp = time(NULL);
+	std::cout << "timestamp = " << timestamp << std::endl;
+	srand (timestamp);
+
+
 	for(int j = 0; j<rota.size();j++){
-		for(;;){
-			rnd = rand() % hebammen.size(); 	
+		NEWRANDOM:rnd = rand() % hebammen.size(); 	
+
+		//criteria:
+		//not day and night after one another:
+
 			if(j>1){
-				if(rota.at(j-1) == rnd){;}
-				else{break;}
-			}
-			else{break;}
-		}
+				if(rota.at(j-1) == rnd){
+					goto NEWRANDOM;
+				}else{;}
+			}else{;}
+
+		//no more than three shifts after one another
+
+			if(j>6){
+				if(rnd == rota.at(j-2) && rnd == rota.at(j-4) && rnd == rota.at(j-6)){
+					goto NEWRANDOM;
+				}else{;}
+			}else{;}
+
 		rota.at(j) = rnd;
 	}
-	std::cout << std::endl;
+
+
+
+
 	//output:
-	std::cout << std::endl;
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl;
 	int max_length = 0;
 		for(int j = 0; j < hebammen.size(); j++){
 			if(max_length < hebammen.at(j).name.length()){
@@ -64,7 +83,7 @@ int main(){
 	}
 	std::cout << "|";
 	for(int j = 0; j < days ; j++){
-		if(j<10){
+		if(j<9){
 			std::cout << " ";
 		}
 		std::cout << " "  << j+1;
@@ -72,9 +91,30 @@ int main(){
 	std::cout << std::endl;
 
 	//spacer:
-	for(int j = 0; j < max_length + 2 + 1 + 3*days ;j++){
+	for(int j = 0; j < max_length + 2 + 1 + 3*days;j++){ 
 		std::cout<< "=";
 	}
 	std::cout << std::endl;
+
+	//rows
+	for(int i = 0; i < hebammen.size(); i++){
+		std::cout << hebammen.at(i).name;
+		for(int j = 0; j < max_length - hebammen.at(i).name.length() + 2; j++){
+			std::cout << " ";
+		}
+		std::cout << "|";
+		for(int j = 0 ;j < 2 * days; j+=2){
+			std::cout << "  ";	
+			if(rota.at(j) == i){
+				std::cout << "T";
+			}else if(rota.at(j+1) == i){
+				std::cout << "N";
+			}else{
+				std::cout << " ";
+			}
+		}
+		std::cout << std::endl;
+	}
+	std::cout << std::endl << std::endl;
 	return 0;
 }
