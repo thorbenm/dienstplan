@@ -32,17 +32,13 @@ int main(){
 	hebammen.back().name = "vier";
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "fuenf";
-	hebammen.resize(hebammen.size()+1);
-	hebammen.back().name = "sechs";
-	hebammen.resize(hebammen.size()+1);
-	hebammen.back().name = "sieben";
 
 	long timestamp = time(NULL);
 	std::cout << "timestamp = " << timestamp << std::endl;
 	srand (timestamp);
 
 
-	for(int j = 0; j<rota.size();j++){
+	ALLNEW:for(int j = 0; j<rota.size();j++){
 		NEWRANDOM:rnd = rand() % hebammen.size(); 	
 
 		//criteria:
@@ -75,6 +71,8 @@ int main(){
 				hebammen.at(j).dienste++;
 			}
 		}
+		if(hebammen.at(j).dienste > 1.0 * rota.size() / hebammen.size() + 1 ){goto ALLNEW;}
+		if(hebammen.at(j).dienste < 1.0 * rota.size() / hebammen.size() - 1 ){goto ALLNEW;}
 	}
 
 
