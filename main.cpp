@@ -38,7 +38,7 @@ int main(){
 	srand (timestamp);
 
 
-	ALLNEW:for(int j = 0; j<rota.size();j++){
+	for(int j = 0; j<rota.size();j++){
 		NEWRANDOM:rnd = rand() % hebammen.size(); 	
 
 		//criteria:
@@ -71,8 +71,6 @@ int main(){
 				hebammen.at(j).dienste++;
 			}
 		}
-		if(hebammen.at(j).dienste > 1.0 * rota.size() / hebammen.size() + 1 ){goto ALLNEW;}
-		if(hebammen.at(j).dienste < 1.0 * rota.size() / hebammen.size() - 1 ){goto ALLNEW;}
 	}
 
 
