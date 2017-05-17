@@ -41,6 +41,7 @@ int main(){
 	hebammen.back().name = "fuenf";
 
 	long timestamp = time(NULL);
+	timestamp = 1495009579;
 	std::cout << "timestamp       = " << timestamp << std::endl;
 	srand (timestamp);
 
@@ -52,7 +53,7 @@ int main(){
 			//criteria:
 			//not day and night after one another:
 	
-				if(j>1){
+				if(j>0){
 					if(rota.at(j-1) == rnd){
 						goto NEWRANDOM;
 					}
@@ -99,6 +100,11 @@ int main(){
 			best_rota = rota;
 			best_stddev = stddev;
 		}
+
+		//progressbar
+//		if(i % (iterations / 10) == 0){
+//			std::cout << i * 100 / iterations << "% ... "; 
+//		}
 	}
 
 	//count dienste best:
