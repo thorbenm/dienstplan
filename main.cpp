@@ -7,6 +7,8 @@
 #include <vector>
 #include <math.h>
 
+int iterations = 100000;
+
 struct hebamme{
 	std::string name;
 	int dienste;
@@ -16,6 +18,8 @@ int days = 31;
 int shifts = days * 2; //hardcoded to two shifts
 
 std::vector<int> rota(shifts);
+std::vector<int> best_rota(shifts);
+double best_stddev = shifts;
 
 int rnd = 0;
 
@@ -40,59 +44,74 @@ int main(){
 	std::cout << "timestamp       = " << timestamp << std::endl;
 	srand (timestamp);
 
+	for(int i = 0; i<iterations ; i++){
 
-	for(int j = 0; j<rota.size();j++){
-		NEWRANDOM:rnd = rand() % hebammen.size(); 	
-
-		//criteria:
-		//not day and night after one another:
-
-			if(j>1){
-				if(rota.at(j-1) == rnd){
-					goto NEWRANDOM;
+		for(int j = 0; j<rota.size();j++){
+			NEWRANDOM:rnd = rand() % hebammen.size(); 	
+	
+			//criteria:
+			//not day and night after one another:
+	
+				if(j>1){
+					if(rota.at(j-1) == rnd){
+						goto NEWRANDOM;
+					}
+				}
+	
+			//no more than three shifts after one another
+	
+				if(j>6){
+					if(rnd == rota.at(j-2) && rnd == rota.at(j-4) && rnd == rota.at(j-6)){
+						goto NEWRANDOM;
+					}
+				}
+	
+			rota.at(j) = rnd;
+		}
+	
+		//count dienste:
+		for(int j = 0; j < hebammen.size(); j++){
+			hebammen.at(j).dienste = 0;
+		}
+		for(int j = 0; j < hebammen.size(); j++){
+			for(int i = 0; i < rota.size(); i++){
+				if(rota.at(i) == j){
+					hebammen.at(j).dienste++;
 				}
 			}
-
-		//no more than three shifts after one another
-
-			if(j>6){
-				if(rnd == rota.at(j-2) && rnd == rota.at(j-4) && rnd == rota.at(j-6)){
-					goto NEWRANDOM;
-				}
-			}
-
-		rota.at(j) = rnd;
+		}
+	
+		//average_dienste:
+		double average_dienste = 0;
+		for(int j = 0; j < hebammen.size(); j++){
+			average_dienste += (double) hebammen.at(j).dienste;
+		}
+		average_dienste /= (double) hebammen.size();
+		//stddev:
+		double stddev = 0;
+		for(int j = 0; j < hebammen.size(); j++){
+			stddev += pow((average_dienste - (double) hebammen.at(j).dienste),2.0);
+		}
+		stddev /= (double) hebammen.size() - 1.0;
+		stddev = sqrt(stddev);
+	
+		if (stddev < best_stddev){
+			best_rota = rota;
+			best_stddev = stddev;
+		}
 	}
 
-	//count dienste:
+	//count dienste best:
 	for(int j = 0; j < hebammen.size(); j++){
 		hebammen.at(j).dienste = 0;
 	}
 	for(int j = 0; j < hebammen.size(); j++){
-		for(int i = 0; i < rota.size(); i++){
-			if(rota.at(i) == j){
+		for(int i = 0; i < best_rota.size(); i++){
+			if(best_rota.at(i) == j){
 				hebammen.at(j).dienste++;
 			}
 		}
 	}
-
-	//average_dienste:
-	double average_dienste = 0;
-	for(int j = 0; j < hebammen.size(); j++){
-		average_dienste += (double) hebammen.at(j).dienste;
-	}
-	average_dienste /= (double) hebammen.size();
-	std::cout << "average_dienste = " << average_dienste << std::endl;
-	//stddev:
-	double stddef = 0;
-	for(int j = 0; j < hebammen.size(); j++){
-		stddef += pow((average_dienste - (double) hebammen.at(j).dienste),2.0);
-	}
-	stddef /= (double) hebammen.size() - 1.0;
-	stddef = sqrt(stddef);
-
-	std::cout << "stddef          = " << stddef << std::endl;
-	
 
 	//output:
 	std::cout << std::endl << std::endl;
@@ -136,9 +155,9 @@ int main(){
 		std::cout << " |";
 		for(int j = 0 ;j < 2 * days; j+=2){
 			std::cout << "  ";	
-			if(rota.at(j) == i){
+			if(best_rota.at(j) == i){
 				std::cout << "T";
-			}else if(rota.at(j+1) == i){
+			}else if(best_rota.at(j+1) == i){
 				std::cout << "N";
 			}else{
 				std::cout << " ";
