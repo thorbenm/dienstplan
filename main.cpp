@@ -73,6 +73,13 @@ int main(){
 		}
 	}
 
+	//stddef:
+	double average_dienste = 0;
+	for(int j = 0; j < hebammen.size(); j++){
+		average_dienste += (double) hebammen.at(j).dienste;
+	}
+	average_dienste /= (double) hebammen.size();
+	std::cout << "average_dienste = " << average_dienste << std::endl;
 
 	//output:
 	std::cout << std::endl << std::endl;
