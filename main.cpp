@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <vector>
+#include <math.h>
 
 struct hebamme{
 	std::string name;
@@ -20,6 +21,8 @@ int rnd = 0;
 
 int main(){
 
+	std::cout << std::endl;
+
 	std::vector<hebamme> hebammen (1);
 	hebammen.back().name = "null";
 	hebammen.resize(hebammen.size()+1);
@@ -34,7 +37,7 @@ int main(){
 	hebammen.back().name = "fuenf";
 
 	long timestamp = time(NULL);
-	std::cout << "timestamp = " << timestamp << std::endl;
+	std::cout << "timestamp       = " << timestamp << std::endl;
 	srand (timestamp);
 
 
@@ -73,13 +76,23 @@ int main(){
 		}
 	}
 
-	//stddef:
+	//average_dienste:
 	double average_dienste = 0;
 	for(int j = 0; j < hebammen.size(); j++){
 		average_dienste += (double) hebammen.at(j).dienste;
 	}
 	average_dienste /= (double) hebammen.size();
 	std::cout << "average_dienste = " << average_dienste << std::endl;
+	//stddev:
+	double stddef = 0;
+	for(int j = 0; j < hebammen.size(); j++){
+		stddef += pow((average_dienste - (double) hebammen.at(j).dienste),2.0);
+	}
+	stddef /= (double) hebammen.size() - 1.0;
+	stddef = sqrt(stddef);
+
+	std::cout << "stddef          = " << stddef << std::endl;
+	
 
 	//output:
 	std::cout << std::endl << std::endl;
