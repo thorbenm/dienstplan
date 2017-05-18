@@ -34,8 +34,8 @@ int main(){
 
 	std::vector<hebamme> hebammen (1);
 	hebammen.back().name = "null";
-	hebammen.back().freiwuensche_wochentag_tag.push_back(0);
-	hebammen.back().freiwuensche_wochentag_nacht.push_back(0);
+	hebammen.back().freiwuensche_wochentag_tag.push_back(1);
+	hebammen.back().freiwuensche_wochentag_nacht.push_back(1);
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "eins";
 	hebammen.resize(hebammen.size()+1);
