@@ -12,6 +12,7 @@ int iterations = 100000;
 struct hebamme{
 	std::string name;
 	int dienste;
+	std::vector<int> rota_exceptions;
 };
 
 int days = 31;
@@ -21,7 +22,6 @@ std::vector<int> rota(shifts);
 std::vector<int> best_rota(shifts);
 double best_stddev = shifts;
 
-int rnd = 0;
 
 int main(){
 
@@ -37,17 +37,37 @@ int main(){
 	hebammen.back().name = "drei";
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "vier";
+	hebammen.back().rota_exceptions.push_back(0);
+	hebammen.back().rota_exceptions.push_back(1);
+	hebammen.back().rota_exceptions.push_back(2);
+	hebammen.back().rota_exceptions.push_back(3);
+	hebammen.back().rota_exceptions.push_back(4);
+	hebammen.back().rota_exceptions.push_back(5);
+	hebammen.back().rota_exceptions.push_back(6);
+	hebammen.back().rota_exceptions.push_back(7);
+	hebammen.back().rota_exceptions.push_back(8);
+	hebammen.back().rota_exceptions.push_back(9);
+	hebammen.back().rota_exceptions.push_back(10);
+	hebammen.back().rota_exceptions.push_back(11);
+	hebammen.back().rota_exceptions.push_back(12);
+	hebammen.back().rota_exceptions.push_back(13);
+	hebammen.back().rota_exceptions.push_back(14);
+	hebammen.back().rota_exceptions.push_back(15);
+	hebammen.back().rota_exceptions.push_back(16);
+	hebammen.back().rota_exceptions.push_back(17);
+	hebammen.back().rota_exceptions.push_back(18);
+	hebammen.back().rota_exceptions.push_back(19);
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "fuenf";
 
 	long timestamp = time(NULL);
-	timestamp = 1495009579;
 	std::cout << "timestamp       = " << timestamp << std::endl;
 	srand (timestamp);
 
-	for(int i = 0; i<iterations ; i++){
+	for(int step = 0; step < iterations ; step++){
 
 		for(int j = 0; j<rota.size();j++){
+			int rnd = 0;
 			NEWRANDOM:rnd = rand() % hebammen.size(); 	
 	
 			//criteria:
@@ -66,6 +86,13 @@ int main(){
 						goto NEWRANDOM;
 					}
 				}
+
+			//check for freiwuensche
+				for (int fr = 0; fr < hebammen.at(rnd).rota_exceptions.size(); fr++){
+					if(hebammen.at(rnd).rota_exceptions.at(fr) == j){
+						goto NEWRANDOM;
+					}
+				}				
 	
 			rota.at(j) = rnd;
 		}
