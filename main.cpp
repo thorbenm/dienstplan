@@ -20,6 +20,7 @@ struct hebamme{
 };
 
 int days = 31;
+int wochentag_vom_ersten = 0;
 int shifts = days * 2; //hardcoded to two shifts
 
 std::vector<int> rota(shifts);
@@ -33,6 +34,8 @@ int main(){
 
 	std::vector<hebamme> hebammen (1);
 	hebammen.back().name = "null";
+	hebammen.back().freiwuensche_wochentag_tag.push_back(0);
+	hebammen.back().freiwuensche_wochentag_nacht.push_back(0);
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "eins";
 	hebammen.resize(hebammen.size()+1);
@@ -51,16 +54,43 @@ int main(){
 	srand (timestamp);
 
 	for(int heb = 0; heb < hebammen.size() ; heb++){
+	int next_push_back = 0;
 	
 		for (int fr = 0; fr < hebammen.at(heb).freiwuensche_tag.size(); fr++){
-			hebammen.at(heb).rota_exceptions.push_back(hebammen.at(heb).freiwuensche_tag.at(fr)*2 - 2);
+			next_push_back = hebammen.at(heb).freiwuensche_tag.at(fr)*2 - 2;
+			hebammen.at(heb).rota_exceptions.push_back(next_push_back);
 		}
 	
 		for (int fr = 0; fr < hebammen.at(heb).freiwuensche_nacht.size(); fr++){
-			hebammen.at(heb).rota_exceptions.push_back(hebammen.at(heb).freiwuensche_nacht.at(fr)*2 - 1);
+			next_push_back = hebammen.at(heb).freiwuensche_nacht.at(fr)*2 - 1;
+			hebammen.at(heb).rota_exceptions.push_back(next_push_back);
+		}
+
+		for (int fr = 0; fr < hebammen.at(heb).freiwuensche_wochentag_tag.size(); fr++){
+			next_push_back = -14;
+			while (next_push_back < shifts){
+				next_push_back += 2 * hebammen.at(heb).freiwuensche_wochentag_nacht.at(fr) ; 
+				next_push_back -= 2*wochentag_vom_ersten; 
+				hebammen.at(heb).rota_exceptions.push_back(next_push_back);
+				next_push_back+=14;
+			}
+		}
+
+		for (int fr = 0; fr < hebammen.at(heb).freiwuensche_wochentag_nacht.size(); fr++){
+			next_push_back = -13;
+			while (next_push_back < shifts){
+				next_push_back += 2 * hebammen.at(heb).freiwuensche_wochentag_nacht.at(fr) ; 
+				next_push_back -= 2*wochentag_vom_ersten; 
+				hebammen.at(heb).rota_exceptions.push_back(next_push_back);
+				next_push_back+=14;
+			}
 		}
 
 	}
+	for(int debug = 0 ; debug < hebammen.at(0).rota_exceptions.size(); debug++){
+	std::cout << hebammen.at(0).rota_exceptions.at(debug) << " ";
+	}
+	std::cout << std::endl;
 
 	for(int step = 0; step < iterations ; step++){
 
