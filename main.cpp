@@ -68,19 +68,20 @@ int main(){
 
 		for (int fr = 0; fr < hebammen.at(heb).freiwuensche_wochentag_tag.size(); fr++){
 			next_push_back = -14;
+			next_push_back += 2 * hebammen.at(heb).freiwuensche_wochentag_nacht.at(fr) ; 
+			next_push_back -= 2 * wochentag_vom_ersten; 
 			while (next_push_back < shifts){
-				next_push_back += 2 * hebammen.at(heb).freiwuensche_wochentag_nacht.at(fr) ; 
-				next_push_back -= 2*wochentag_vom_ersten; 
 				hebammen.at(heb).rota_exceptions.push_back(next_push_back);
 				next_push_back+=14;
 			}
 		}
 
 		for (int fr = 0; fr < hebammen.at(heb).freiwuensche_wochentag_nacht.size(); fr++){
-			next_push_back = -13;
+			next_push_back = -14;
+			next_push_back += 2 * hebammen.at(heb).freiwuensche_wochentag_nacht.at(fr) ; 
+			next_push_back -= 2 * wochentag_vom_ersten; 
+			next_push_back += 1;
 			while (next_push_back < shifts){
-				next_push_back += 2 * hebammen.at(heb).freiwuensche_wochentag_nacht.at(fr) ; 
-				next_push_back -= 2*wochentag_vom_ersten; 
 				hebammen.at(heb).rota_exceptions.push_back(next_push_back);
 				next_push_back+=14;
 			}
