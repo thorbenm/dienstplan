@@ -19,11 +19,12 @@ struct hebamme{
 	std::vector<int> rota_exceptions;
 };
 
-int days = 31;
-int wochentag_vom_ersten = 0;
+int days = 31; // days of the month
+int wochentag_vom_ersten = 0; // weekday of first day in month; 0=mo,1=tue;...
 int shifts = days * 2; //hardcoded to two shifts
 
 std::vector<int> rota(shifts);
+//used to choose best rota:
 std::vector<int> best_rota(shifts);
 double best_stddev = shifts;
 
@@ -32,6 +33,7 @@ int main(){
 
 	std::cout << std::endl;
 
+	// data of hebammen:
 	std::vector<hebamme> hebammen (1);
 	hebammen.back().name = "null";
 	hebammen.back().freiwuensche_wochentag_tag.push_back(1);
@@ -49,10 +51,12 @@ int main(){
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "fuenf";
 
+	//used for random:
 	long timestamp = time(NULL);
 	std::cout << "timestamp       = " << timestamp << std::endl;
 	srand (timestamp);
 
+	//transfer userfriendly freiwuensche data to rota_exceptions:
 	for(int heb = 0; heb < hebammen.size() ; heb++){
 	int next_push_back = 0;
 	
@@ -88,11 +92,10 @@ int main(){
 		}
 
 	}
-	for(int debug = 0 ; debug < hebammen.at(0).rota_exceptions.size(); debug++){
-	std::cout << hebammen.at(0).rota_exceptions.at(debug) << " ";
-	}
+
 	std::cout << std::endl;
 
+	//generate rota:
 	for(int step = 0; step < iterations ; step++){
 
 		for(int j = 0; j<rota.size();j++){
@@ -144,6 +147,7 @@ int main(){
 			average_dienste += (double) hebammen.at(j).dienste;
 		}
 		average_dienste /= (double) hebammen.size();
+
 		//stddev:
 		double stddev = 0;
 		for(int j = 0; j < hebammen.size(); j++){
@@ -152,18 +156,19 @@ int main(){
 		stddev /= (double) hebammen.size() - 1.0;
 		stddev = sqrt(stddev);
 	
+		//choose best rota
 		if (stddev < best_stddev){
 			best_rota = rota;
 			best_stddev = stddev;
 		}
 
-		//progressbar
+//		//progressbar
 //		if(i % (iterations / 10) == 0){
 //			std::cout << i * 100 / iterations << "% ... "; 
 //		}
 	}
 
-	//count dienste best:
+	//count dienste for best rota:
 	for(int j = 0; j < hebammen.size(); j++){
 		hebammen.at(j).dienste = 0;
 	}
