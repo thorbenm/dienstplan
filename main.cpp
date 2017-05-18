@@ -12,6 +12,10 @@ int iterations = 100000;
 struct hebamme{
 	std::string name;
 	int dienste;
+	std::vector<int> freiwuensche_tag;
+	std::vector<int> freiwuensche_nacht;
+	std::vector<int> freiwuensche_wochentag_tag;
+	std::vector<int> freiwuensche_wochentag_nacht;
 	std::vector<int> rota_exceptions;
 };
 
@@ -29,6 +33,24 @@ int main(){
 
 	std::vector<hebamme> hebammen (1);
 	hebammen.back().name = "null";
+	hebammen.back().freiwuensche_tag.push_back(1);
+	hebammen.back().freiwuensche_tag.push_back(2);
+	hebammen.back().freiwuensche_tag.push_back(3);
+	hebammen.back().freiwuensche_tag.push_back(4);
+	hebammen.back().freiwuensche_tag.push_back(5);
+	hebammen.back().freiwuensche_tag.push_back(6);
+	hebammen.back().freiwuensche_tag.push_back(7);
+	hebammen.back().freiwuensche_tag.push_back(8);
+	hebammen.back().freiwuensche_tag.push_back(9);
+	hebammen.back().freiwuensche_nacht.push_back(1);
+	hebammen.back().freiwuensche_nacht.push_back(2);
+	hebammen.back().freiwuensche_nacht.push_back(3);
+	hebammen.back().freiwuensche_nacht.push_back(4);
+	hebammen.back().freiwuensche_nacht.push_back(5);
+	hebammen.back().freiwuensche_nacht.push_back(6);
+	hebammen.back().freiwuensche_nacht.push_back(7);
+	hebammen.back().freiwuensche_nacht.push_back(8);
+	hebammen.back().freiwuensche_nacht.push_back(9);
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "eins";
 	hebammen.resize(hebammen.size()+1);
@@ -37,32 +59,24 @@ int main(){
 	hebammen.back().name = "drei";
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "vier";
-	hebammen.back().rota_exceptions.push_back(0);
-	hebammen.back().rota_exceptions.push_back(1);
-	hebammen.back().rota_exceptions.push_back(2);
-	hebammen.back().rota_exceptions.push_back(3);
-	hebammen.back().rota_exceptions.push_back(4);
-	hebammen.back().rota_exceptions.push_back(5);
-	hebammen.back().rota_exceptions.push_back(6);
-	hebammen.back().rota_exceptions.push_back(7);
-	hebammen.back().rota_exceptions.push_back(8);
-	hebammen.back().rota_exceptions.push_back(9);
-	hebammen.back().rota_exceptions.push_back(10);
-	hebammen.back().rota_exceptions.push_back(11);
-	hebammen.back().rota_exceptions.push_back(12);
-	hebammen.back().rota_exceptions.push_back(13);
-	hebammen.back().rota_exceptions.push_back(14);
-	hebammen.back().rota_exceptions.push_back(15);
-	hebammen.back().rota_exceptions.push_back(16);
-	hebammen.back().rota_exceptions.push_back(17);
-	hebammen.back().rota_exceptions.push_back(18);
-	hebammen.back().rota_exceptions.push_back(19);
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "fuenf";
 
 	long timestamp = time(NULL);
 	std::cout << "timestamp       = " << timestamp << std::endl;
 	srand (timestamp);
+
+	for(int heb = 0; heb < hebammen.size() ; heb++){
+	
+		for (int fr = 0; fr < hebammen.at(heb).freiwuensche_tag.size(); fr++){
+			hebammen.at(heb).rota_exceptions.push_back(hebammen.at(heb).freiwuensche_tag.at(fr)*2 - 2);
+		}
+	
+		for (int fr = 0; fr < hebammen.at(heb).freiwuensche_nacht.size(); fr++){
+			hebammen.at(heb).rota_exceptions.push_back(hebammen.at(heb).freiwuensche_nacht.at(fr)*2 - 1);
+		}
+
+	}
 
 	for(int step = 0; step < iterations ; step++){
 
