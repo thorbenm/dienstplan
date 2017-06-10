@@ -46,25 +46,52 @@ int main(){
 
 	// data of hebammen:
 	std::vector<hebamme> hebammen (1);
+
 	hebammen.back().name = "null";
-//	hebammen.back().freiwuensche_wochentag_nacht = {};
+	hebammen.back().freiwuensche_tag = {};
+	hebammen.back().freiwuensche_nacht = {};
+	hebammen.back().freiwuensche_wochentag_tag = {};
+	hebammen.back().freiwuensche_wochentag_nacht = {};
 
 	hebammen.resize(hebammen.size()+1);
+
 	hebammen.back().name = "eins";
+	hebammen.back().freiwuensche_tag = {};
+	hebammen.back().freiwuensche_nacht = {};
+	hebammen.back().freiwuensche_wochentag_tag = {};
+	hebammen.back().freiwuensche_wochentag_nacht = {};
 
 	hebammen.resize(hebammen.size()+1);
+
 	hebammen.back().name = "zwei";
-	hebammen.back().freiwuensche_tag.push_back(9);
-	hebammen.back().freiwuensche_nacht.push_back(9);
+	hebammen.back().freiwuensche_tag = {};
+	hebammen.back().freiwuensche_nacht = {};
+	hebammen.back().freiwuensche_wochentag_tag = {};
+	hebammen.back().freiwuensche_wochentag_nacht = {};
 
 	hebammen.resize(hebammen.size()+1);
+
 	hebammen.back().name = "drei";
+	hebammen.back().freiwuensche_tag = {};
+	hebammen.back().freiwuensche_nacht = {};
+	hebammen.back().freiwuensche_wochentag_tag = {};
+	hebammen.back().freiwuensche_wochentag_nacht = {};
 
 	hebammen.resize(hebammen.size()+1);
+
 	hebammen.back().name = "vier";
+	hebammen.back().freiwuensche_tag = {};
+	hebammen.back().freiwuensche_nacht = {};
+	hebammen.back().freiwuensche_wochentag_tag = {};
+	hebammen.back().freiwuensche_wochentag_nacht = {};
 
 	hebammen.resize(hebammen.size()+1);
+
 	hebammen.back().name = "fuenf";
+	hebammen.back().freiwuensche_tag = {};
+	hebammen.back().freiwuensche_nacht = {};
+	hebammen.back().freiwuensche_wochentag_tag = {};
+	hebammen.back().freiwuensche_wochentag_nacht = {};
 
 
 	//used for random:
