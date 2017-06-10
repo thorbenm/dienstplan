@@ -1,4 +1,10 @@
-	std::vector<hebamme> hebammen (1);
+	// Montag     = 0	
+	// Dienstag   = 1	
+	// Mittwoch   = 2	
+	// Donnerstag = 3	
+	// Freitag    = 4	
+	// Samstag    = 5	
+	// Sonntag    = 6	
 
 	hebammen.back().name = "null";
 	hebammen.back().freiwuensche_tag = {};
