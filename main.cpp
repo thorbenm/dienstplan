@@ -6,6 +6,7 @@
 #include <time.h>
 #include <vector>
 #include <math.h>
+#include <unistd.h>
 
 int iterations = 100000;
 
@@ -27,11 +28,21 @@ std::vector<int> rota(shifts);
 //used to choose best rota:
 std::vector<int> best_rota(shifts);
 double best_stddev = shifts;
+int sleep_time = 100000;
 
 
 int main(){
 
 	std::cout << std::endl;
+	std::cout << "Wieviele Tage hat der Monat?" << std::endl; usleep(sleep_time);
+	std::cin >> days ; 
+	if(days < 28 || days > 31){std::cerr << "Keine gültige Zahl an Tagen im Monat"; exit(0);}
+	usleep(sleep_time);
+	std::cout << "Welcher Wochentag ist der Monatserste?" << std::endl; 
+	std::cout << "(Mo = 0, Di = 1, Mi = 2, Do = 3, Fr = 4, Sa = 5, So = 6)" << std::endl;
+	std::cin >> wochentag_vom_ersten;
+
+	
 
 	// data of hebammen:
 	std::vector<hebamme> hebammen (1);
@@ -51,9 +62,11 @@ int main(){
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "fuenf";
 
+	std::cout << "Dienstplan wird erstellt:" << std::endl;
+
 	//used for random:
 	long timestamp = time(NULL);
-	std::cout << "timestamp       = " << timestamp << std::endl;
+	std::cout << "timestamp: " << timestamp << std::endl;
 	srand (timestamp);
 
 	//transfer userfriendly freiwuensche data to rota_exceptions:
