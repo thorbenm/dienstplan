@@ -47,27 +47,32 @@ int main(){
 	// data of hebammen:
 	std::vector<hebamme> hebammen (1);
 	hebammen.back().name = "null";
-	hebammen.back().freiwuensche_wochentag_tag.push_back(1);
-	hebammen.back().freiwuensche_wochentag_nacht.push_back(1);
+//	hebammen.back().freiwuensche_wochentag_nacht = {};
+
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "eins";
+
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "zwei";
 	hebammen.back().freiwuensche_tag.push_back(9);
 	hebammen.back().freiwuensche_nacht.push_back(9);
+
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "drei";
+
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "vier";
+
 	hebammen.resize(hebammen.size()+1);
 	hebammen.back().name = "fuenf";
 
-	std::cout << "Dienstplan wird erstellt:" << std::endl;
 
 	//used for random:
 	long timestamp = time(NULL);
 	std::cout << "timestamp: " << timestamp << std::endl;
 	srand (timestamp);
+
+	std::cout << "Dienstplan wird erstellt:"; 
 
 	//transfer userfriendly freiwuensche data to rota_exceptions:
 	for(int heb = 0; heb < hebammen.size() ; heb++){
