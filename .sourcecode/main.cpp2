@@ -1,4 +1,4 @@
-	std::cout << "Dienstplan wird erstellt:"; 
+	std::cout << std::endl << "Dienstplan wird erstellt, bitte warten..."; 
 
 	//transfer userfriendly freiwuensche data to rota_exceptions:
 	for(int heb = 0; heb < hebammen.size() ; heb++){

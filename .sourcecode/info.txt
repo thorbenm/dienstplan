@@ -1,3 +1,10 @@
+	//	
+	// Herzlich Wilkommen zum Dienstplan-Programm v1.0
+	// (c) Thorben B. Muehleder, 2017	
+	//
+	// Bitte beachten Sie, dass Wochentage im gesamten Programm
+	// als Zahl angegeben werden muessen.
+	// 
 	// Montag     = 0	
 	// Dienstag   = 1	
 	// Mittwoch   = 2	
@@ -5,12 +12,27 @@
 	// Freitag    = 4	
 	// Samstag    = 5	
 	// Sonntag    = 6	
+	//
+	// Navigieren Sie mit den Pfeiltasten (nicht mit der Maus)
+	// und passen sie die Daten auf den aktuellen Monat an:
+	//
+	// Wieviele Tage hat der Monat?
+	days = 30;
+	//
+	// Welcher Wochentag ist der erste des Monats? (Zahl)
+	wochentag_vom_ersten = 0;
+	//
+	// Um die Daten zu speichern und den Diensplan zu generieren
+	// drücken Sie Ctrl x, dann y, dann Enter.
+	//
+	// Sollten Probleme auftreten bitte den timestamp des
+	// falschen Dienstplans notieren.
 
-	hebammen.back().name = "null";
-	hebammen.back().freiwuensche_tag = {};
-	hebammen.back().freiwuensche_nacht = {};
-	hebammen.back().freiwuensche_wochentag_tag = {};
-	hebammen.back().freiwuensche_wochentag_nacht = {};
+	hebammen.back().name ="null";
+	hebammen.back().freiwuensche_tag = {1,2,3,4};
+	hebammen.back().freiwuensche_nacht = {1,2,3,4,5};
+	hebammen.back().freiwuensche_wochentag_tag = {0};
+	hebammen.back().freiwuensche_wochentag_nacht = {0};
 
 	hebammen.resize(hebammen.size()+1);
 
