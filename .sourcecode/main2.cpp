@@ -1,4 +1,11 @@
+
 	std::cout << std::endl << "Dienstplan wird erstellt, bitte warten..."; 
+
+	int shifts = days * 2; //hardcoded to two shifts
+std::vector<int> rota(shifts);
+//used to choose best rota:
+std::vector<int> best_rota(shifts);
+double best_stddev = shifts;
 
 	//transfer userfriendly freiwuensche data to rota_exceptions:
 	for(int heb = 0; heb < hebammen.size() ; heb++){
