@@ -8,11 +8,12 @@
 #include <math.h>
 #include <unistd.h>
 
-int iterations = 100000;
+int iterations = 1000;
 
 struct hebamme{
 	std::string name;
 	int dienste;
+	int max_dienste;
 	std::vector<int> freiwuensche_tag;
 	std::vector<int> freiwuensche_nacht;
 	std::vector<int> freiwuensche_wochentag_tag;

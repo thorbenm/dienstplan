@@ -14,7 +14,7 @@
 	// Sonntag    = 6	
 	//
 	// Navigieren Sie mit den Pfeiltasten (nicht mit der Maus)
-	// und passen sie die Daten auf den aktuellen Monat an:
+	// und passen Sie die Daten auf den aktuellen Monat an:
 	//
 	// Wieviele Tage hat der Monat?
 	days = 30;
@@ -33,6 +33,7 @@
 	hebammen.back().freiwuensche_nacht = {1,2,3,4,5};
 	hebammen.back().freiwuensche_wochentag_tag = {0};
 	hebammen.back().freiwuensche_wochentag_nacht = {0};
+	hebammen.back().max_dienste = 5;
 
 	hebammen.resize(hebammen.size()+1);
 
@@ -41,6 +42,7 @@
 	hebammen.back().freiwuensche_nacht = {};
 	hebammen.back().freiwuensche_wochentag_tag = {};
 	hebammen.back().freiwuensche_wochentag_nacht = {};
+	hebammen.back().max_dienste = -1;
 
 	hebammen.resize(hebammen.size()+1);
 
@@ -49,6 +51,7 @@
 	hebammen.back().freiwuensche_nacht = {};
 	hebammen.back().freiwuensche_wochentag_tag = {};
 	hebammen.back().freiwuensche_wochentag_nacht = {};
+	hebammen.back().max_dienste = -1;
 
 	hebammen.resize(hebammen.size()+1);
 
@@ -57,6 +60,7 @@
 	hebammen.back().freiwuensche_nacht = {};
 	hebammen.back().freiwuensche_wochentag_tag = {};
 	hebammen.back().freiwuensche_wochentag_nacht = {};
+	hebammen.back().max_dienste = -1;
 
 	hebammen.resize(hebammen.size()+1);
 
@@ -65,6 +69,7 @@
 	hebammen.back().freiwuensche_nacht = {};
 	hebammen.back().freiwuensche_wochentag_tag = {};
 	hebammen.back().freiwuensche_wochentag_nacht = {};
+	hebammen.back().max_dienste = -1;
 
 	hebammen.resize(hebammen.size()+1);
 
@@ -73,5 +78,6 @@
 	hebammen.back().freiwuensche_nacht = {};
 	hebammen.back().freiwuensche_wochentag_tag = {};
 	hebammen.back().freiwuensche_wochentag_nacht = {};
+	hebammen.back().max_dienste = -1;
 
 

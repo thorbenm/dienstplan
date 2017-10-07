@@ -41,7 +41,7 @@
 	//generate rota:
 	for(int step = 0; step < iterations ; step++){
 
-		for(int j = 0; j<rota.size();j++){
+		ALLNEW:for(int j = 0; j<rota.size();j++){
 			int rnd = 0;
 			NEWRANDOM:rnd = rand() % hebammen.size(); 	
 	
@@ -80,6 +80,13 @@
 			for(int i = 0; i < rota.size(); i++){
 				if(rota.at(i) == j){
 					hebammen.at(j).dienste++;
+				}
+			}
+		}
+		for(int j = 0; j < hebammen.size(); j++){
+			if(hebammen.at(j).max_dienste > -1){
+				if(hebammen.at(j).max_dienste < hebammen.at(j).dienste){
+					goto ALLNEW;
 				}
 			}
 		}
