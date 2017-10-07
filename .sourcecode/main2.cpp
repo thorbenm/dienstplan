@@ -75,19 +75,27 @@
 		//count dienste:
 		for(int j = 0; j < hebammen.size(); j++){
 			hebammen.at(j).dienste = 0;
+			hebammen.at(j).nachtdienste = 0;
 		}
 		for(int j = 0; j < hebammen.size(); j++){
 			for(int i = 0; i < rota.size(); i++){
 				if(rota.at(i) == j){
 					hebammen.at(j).dienste++;
+					if(i % 2 == 1){
+						hebammen.at(j).nachtdienste++;
+					}
 				}
 			}
 		}
+		//check for max_dienste and nachtdienste
 		for(int j = 0; j < hebammen.size(); j++){
 			if(hebammen.at(j).max_dienste > -1){
 				if(hebammen.at(j).max_dienste < hebammen.at(j).dienste){
 					goto ALLNEW;
 				}
+			}
+			if(hebammen.at(j).nachtdienste > (hebammen.at(j).dienste + 1) / 2){
+				goto ALLNEW;
 			}
 		}
 	
@@ -112,20 +120,27 @@
 			best_stddev = stddev;
 		}
 
-//		//progressbar
-//		if(i % (iterations / 10) == 0){
-//			std::cout << i * 100 / iterations << "% ... "; 
-//		}
+		//progressbar
+		if(step % (iterations / 10) == 0){
+			std::cout << step * 100 / iterations << "% ... " << std::flush; 
+		}
+		if(step == iterations - 1){
+			std::cout << "100%" << std::endl;
+		}
 	}
 
 	//count dienste for best rota:
 	for(int j = 0; j < hebammen.size(); j++){
 		hebammen.at(j).dienste = 0;
+		hebammen.at(j).nachtdienste = 0;
 	}
 	for(int j = 0; j < hebammen.size(); j++){
 		for(int i = 0; i < best_rota.size(); i++){
 			if(best_rota.at(i) == j){
 				hebammen.at(j).dienste++;
+				if(i % 2 == 1){
+					hebammen.at(j).nachtdienste++;
+				}
 			}
 		}
 	}
@@ -183,5 +198,6 @@
 		std::cout << std::endl;
 	}
 	std::cout << std::endl << std::endl;
+//	std::cout << hebammen.at(0).nachtdienste << std::endl;
 	return 0;
 }

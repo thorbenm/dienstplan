@@ -1,3 +1,6 @@
+//TODO: an issue with counting nachtdienste
+// issue with dienste counting
+
 #include <iostream>
 #include <string>
 //#include <random>
@@ -13,6 +16,7 @@ int iterations = 1000;
 struct hebamme{
 	std::string name;
 	int dienste;
+	int nachtdienste;
 	int max_dienste;
 	std::vector<int> freiwuensche_tag;
 	std::vector<int> freiwuensche_nacht;
@@ -35,6 +39,7 @@ int main(){
 
 	//used for random:
 	long timestamp = time(NULL);
+//	timestamp = 1507384137;
 	std::cout << "timestamp: " << timestamp << std::endl;
 	srand (timestamp);
 

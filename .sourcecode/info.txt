@@ -20,7 +20,7 @@
 	days = 30;
 	//
 	// Welcher Wochentag ist der erste des Monats? (Zahl)
-	wochentag_vom_ersten = 0;
+	wochentag_vom_ersten = 2;
 	//
 	// Um die Daten zu speichern und den Diensplan zu generieren
 	// drücken Sie Ctrl x, dann y, dann Enter.
@@ -28,56 +28,65 @@
 	// Sollten Probleme auftreten bitte den timestamp des
 	// falschen Dienstplans notieren.
 
-	hebammen.back().name ="null";
-	hebammen.back().freiwuensche_tag = {1,2,3,4};
-	hebammen.back().freiwuensche_nacht = {1,2,3,4,5};
+	hebammen.back().name ="Jenifer Melzer";
+	hebammen.back().freiwuensche_tag = {};
+	hebammen.back().freiwuensche_nacht = {};
+	hebammen.back().freiwuensche_wochentag_tag = {2};
+	hebammen.back().freiwuensche_wochentag_nacht = {1,2};
+	hebammen.back().max_dienste = 14;
+
+	hebammen.resize(hebammen.size()+1);
+
+	hebammen.back().name = "Anne Hartmann";
+	hebammen.back().freiwuensche_tag = {};
+	hebammen.back().freiwuensche_nacht = {};
 	hebammen.back().freiwuensche_wochentag_tag = {0};
-	hebammen.back().freiwuensche_wochentag_nacht = {0};
-	hebammen.back().max_dienste = 5;
+	hebammen.back().freiwuensche_wochentag_nacht = {6,0};
+	hebammen.back().max_dienste = 14;
 
 	hebammen.resize(hebammen.size()+1);
 
-	hebammen.back().name = "eins";
+	hebammen.back().name = "Simone Krug";
 	hebammen.back().freiwuensche_tag = {};
 	hebammen.back().freiwuensche_nacht = {};
-	hebammen.back().freiwuensche_wochentag_tag = {};
-	hebammen.back().freiwuensche_wochentag_nacht = {};
-	hebammen.back().max_dienste = -1;
+	hebammen.back().freiwuensche_wochentag_tag = {2};
+	hebammen.back().freiwuensche_wochentag_nacht = {1,2};
+	hebammen.back().max_dienste = 10;
 
 	hebammen.resize(hebammen.size()+1);
 
-	hebammen.back().name = "zwei";
+	hebammen.back().name = "Katharina Lange";
 	hebammen.back().freiwuensche_tag = {};
 	hebammen.back().freiwuensche_nacht = {};
-	hebammen.back().freiwuensche_wochentag_tag = {};
-	hebammen.back().freiwuensche_wochentag_nacht = {};
-	hebammen.back().max_dienste = -1;
+	hebammen.back().freiwuensche_wochentag_tag = {3};
+	hebammen.back().freiwuensche_wochentag_nacht = {2,3};
+	hebammen.back().max_dienste = 14;
 
 	hebammen.resize(hebammen.size()+1);
 
-	hebammen.back().name = "drei";
+	hebammen.back().name = "Luica Bertram";
 	hebammen.back().freiwuensche_tag = {};
 	hebammen.back().freiwuensche_nacht = {};
-	hebammen.back().freiwuensche_wochentag_tag = {};
-	hebammen.back().freiwuensche_wochentag_nacht = {};
-	hebammen.back().max_dienste = -1;
+	hebammen.back().freiwuensche_wochentag_tag = {1};
+	hebammen.back().freiwuensche_wochentag_nacht = {0,1};
+	hebammen.back().max_dienste = 14;
+
+//	hebammen.resize(hebammen.size()+1);
+//
+//	hebammen.back().name = "Lisa Gessner";
+//	hebammen.back().freiwuensche_tag = {};
+//	hebammen.back().freiwuensche_nacht = {};
+//	hebammen.back().freiwuensche_wochentag_tag = {3};
+//	hebammen.back().freiwuensche_wochentag_nacht = {2,3};
+//	hebammen.back().max_dienste = 14;
 
 	hebammen.resize(hebammen.size()+1);
 
-	hebammen.back().name = "vier";
+	hebammen.back().name = "Shirin Ansari";
 	hebammen.back().freiwuensche_tag = {};
 	hebammen.back().freiwuensche_nacht = {};
-	hebammen.back().freiwuensche_wochentag_tag = {};
-	hebammen.back().freiwuensche_wochentag_nacht = {};
-	hebammen.back().max_dienste = -1;
-
-	hebammen.resize(hebammen.size()+1);
-
-	hebammen.back().name = "fuenf";
-	hebammen.back().freiwuensche_tag = {};
-	hebammen.back().freiwuensche_nacht = {};
-	hebammen.back().freiwuensche_wochentag_tag = {};
-	hebammen.back().freiwuensche_wochentag_nacht = {};
-	hebammen.back().max_dienste = -1;
+	hebammen.back().freiwuensche_wochentag_tag = {4};
+	hebammen.back().freiwuensche_wochentag_nacht = {3,4};
+	hebammen.back().max_dienste = 14;
 
 
