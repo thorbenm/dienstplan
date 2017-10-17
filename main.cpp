@@ -1,3 +1,136 @@
+//TODO: an issue with counting nachtdienste
+// issue with dienste counting
+
+#include <iostream>
+#include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <vector>
+#include <math.h>
+#include <unistd.h>
+
+int iterations = 100;
+int max_wrong = 1000;
+int wrong_counter = 0;
+
+struct hebamme{
+	std::string name;
+	int dienste;
+	int nachtdienste;
+	int max_dienste;
+	std::vector<int> freiwuensche_tag;
+	std::vector<int> freiwuensche_nacht;
+	std::vector<int> freiwuensche_wochentag_tag;
+	std::vector<int> freiwuensche_wochentag_nacht;
+	std::vector<int> rota_exceptions;
+};
+
+int days; // = 30; // days of the month
+int wochentag_vom_ersten; // = 0; // weekday of first day in month; 0=mo,1=tue;...
+
+
+
+int main(){
+
+	//used for random:
+	long timestamp = time(NULL);
+//	timestamp = 1507384137;
+	std::cout << "timestamp: " << timestamp << std::endl;
+	srand (timestamp);
+
+	// data of hebammen:
+	std::vector<hebamme> hebammen (1);
+	//	
+	// Herzlich Wilkommen zum Dienstplan-Programm v1.0
+	// (c) Thorben B. Muehleder, 2017	
+	//
+	// Bitte beachten Sie, dass Wochentage im gesamten Programm
+	// als Zahl angegeben werden muessen.
+	// 
+	// Montag     = 0	
+	// Dienstag   = 1	
+	// Mittwoch   = 2	
+	// Donnerstag = 3	
+	// Freitag    = 4	
+	// Samstag    = 5	
+	// Sonntag    = 6	
+	//
+	// Navigieren Sie mit den Pfeiltasten (nicht mit der Maus)
+	// und passen Sie die Daten auf den aktuellen Monat an:
+	//
+	// Wieviele Tage hat der Monat?
+	days = 30;
+	//
+	// Welcher Wochentag ist der erste des Monats? (Zahl)
+	wochentag_vom_ersten = 2;
+	//
+	// Um die Daten zu speichern und den Diensplan zu generieren
+	// drücken Sie Ctrl x, dann y, dann Enter.
+	//
+	// Sollten Probleme auftreten bitte den timestamp des
+	// falschen Dienstplans notieren.
+
+	hebammen.back().name ="Jenifer Melzer";
+	hebammen.back().freiwuensche_tag = {25,26};
+	hebammen.back().freiwuensche_nacht = {25,26};
+	hebammen.back().freiwuensche_wochentag_tag = {2};
+	hebammen.back().freiwuensche_wochentag_nacht = {1,2};
+	hebammen.back().max_dienste = 14;
+
+	hebammen.resize(hebammen.size()+1);
+
+	hebammen.back().name = "Anne Hartmann";
+	hebammen.back().freiwuensche_tag = {1,17,18,19,23,24};
+	hebammen.back().freiwuensche_nacht = {22,17,18,19,23,24};
+	hebammen.back().freiwuensche_wochentag_tag = {0};
+	hebammen.back().freiwuensche_wochentag_nacht = {6,0};
+	hebammen.back().max_dienste = 14;
+
+	hebammen.resize(hebammen.size()+1);
+
+	hebammen.back().name = "Simone Krug";
+	hebammen.back().freiwuensche_tag = {3,4,5,6,20,27,13};
+	hebammen.back().freiwuensche_nacht = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};
+	hebammen.back().freiwuensche_wochentag_tag = {2};
+	hebammen.back().freiwuensche_wochentag_nacht = {1,2};
+	hebammen.back().max_dienste = 14;
+
+	hebammen.resize(hebammen.size()+1);
+
+	hebammen.back().name = "Katharina Lange";
+	hebammen.back().freiwuensche_tag = {5,18,20,21,22,23,24,25,26};
+	hebammen.back().freiwuensche_nacht = {4,18,20,21,22,23,24,25,26};
+	hebammen.back().freiwuensche_wochentag_tag = {3};
+	hebammen.back().freiwuensche_wochentag_nacht = {2,3};
+	hebammen.back().max_dienste = 14;
+
+	hebammen.resize(hebammen.size()+1);
+
+	hebammen.back().name = "Luica Bertram";
+	hebammen.back().freiwuensche_tag = {11,12,23,24};
+	hebammen.back().freiwuensche_nacht = {10,11,12,22,23,24};
+	hebammen.back().freiwuensche_wochentag_tag = {1};
+	hebammen.back().freiwuensche_wochentag_nacht = {0,1};
+	hebammen.back().max_dienste = 14;
+
+//	hebammen.resize(hebammen.size()+1);
+//
+//	hebammen.back().name = "Lisa Gessner";
+//	hebammen.back().freiwuensche_tag = {};
+//	hebammen.back().freiwuensche_nacht = {};
+//	hebammen.back().freiwuensche_wochentag_tag = {3};
+//	hebammen.back().freiwuensche_wochentag_nacht = {2,3};
+//	hebammen.back().max_dienste = 14;
+
+	hebammen.resize(hebammen.size()+1);
+
+	hebammen.back().name = "Shirin Ansari";
+	hebammen.back().freiwuensche_tag = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
+	hebammen.back().freiwuensche_nacht = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
+	hebammen.back().freiwuensche_wochentag_tag = {4};
+	hebammen.back().freiwuensche_wochentag_nacht = {3,4};
+	hebammen.back().max_dienste = 7;
 
 	std::cout << std::endl << "Dienstplan wird erstellt, bitte warten..."; 
 

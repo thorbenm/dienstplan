@@ -1,5 +1,4 @@
-//TODO: an issue with counting nachtdienste
-// issue with dienste counting
+//TODO: TNNN is too much
 
 #include <iostream>
 #include <string>
@@ -10,7 +9,9 @@
 #include <math.h>
 #include <unistd.h>
 
-int iterations = 1000;
+int iterations = 100;
+int max_wrong = 1000;
+int wrong_counter = 0;
 
 struct hebamme{
 	std::string name;
