@@ -67,10 +67,29 @@ double best_stddev = shifts;
 					}
 				}
 	
-			//no more than three shifts after one another
+			//no more than three same shifts after one another
 	
-				if(j>6){
-					if(rnd == rota.at(j-2) && rnd == rota.at(j-4) && rnd == rota.at(j-6)){
+	//			if(j>6){
+	//				if(rnd == rota.at(j-2) && rnd == rota.at(j-4) && rnd == rota.at(j-6)){
+	//					wrong_counter++;
+	//					if(wrong_counter < max_wrong){
+	//						goto NEWRANDOM;
+	//					}else{
+	//						wrong_counter = 0;
+	//						goto ALLNEW;
+	//					}
+	//				}
+	//			}
+
+			//no more than 3 shifts in four days
+				if(j>7){
+					int cc = 0;
+					for (int jj = j-8; jj < j; jj++){
+						if(rnd == rota.at(jj)){
+							cc++;
+						}
+					}
+					if(cc > 2){
 						wrong_counter++;
 						if(wrong_counter < max_wrong){
 							goto NEWRANDOM;

@@ -1,4 +1,5 @@
-//TODO: TNNN is too much
+//TODO: TNNN, TTNN, TTTN is too much
+//	Tried it but failed
 
 #include <iostream>
 #include <string>
@@ -9,7 +10,7 @@
 #include <math.h>
 #include <unistd.h>
 
-int iterations = 100;
+int iterations = 10;
 int max_wrong = 1000;
 int wrong_counter = 0;
 

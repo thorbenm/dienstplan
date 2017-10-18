@@ -2,7 +2,7 @@
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR"
 rm main.cpp
-#rm a.out
+rm a.out
 nano .sourcecode/info.txt
 cat .sourcecode/main1.cpp >> main.cpp
 cat .sourcecode/info.txt >> main.cpp
