@@ -35,7 +35,7 @@ int main(){
 
 	//used for random:
 	long timestamp = time(NULL);
-//	timestamp = 1507384137;
+	timestamp = 1508315890;
 	std::cout << "timestamp: " << timestamp << std::endl;
 	srand (timestamp);
 

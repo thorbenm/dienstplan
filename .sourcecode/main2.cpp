@@ -82,9 +82,15 @@ double best_stddev = shifts;
 	//			}
 
 			//no more than 3 shifts in four days
-				if(j>7){
+				if(j>6){
 					int cc = 0;
-					for (int jj = j-8; jj < j; jj++){
+					int check_for;
+					if(j == 6){
+						check_for = 6;
+					}else{
+						check_for = 7;
+					}
+					for (int jj = j - check_for; jj < j; jj++){
 						if(rnd == rota.at(jj)){
 							cc++;
 						}
