@@ -7,8 +7,9 @@
 #include <math.h>
 #include <unistd.h>
 
-int iterations = 100;
-int max_wrong = 1000;
+int iterations = 10;
+int strictness = 0; // low is stricter; default = 0;
+int max_wrong = 5000000;
 int wrong_counter = 0;
 
 struct hebamme{
