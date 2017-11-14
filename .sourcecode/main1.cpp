@@ -1,6 +1,3 @@
-//TODO: TNNN, TTNN, TTTN is too much
-//	Tried it but failed
-
 #include <iostream>
 #include <string>
 #include <stdio.h>
@@ -10,7 +7,7 @@
 #include <math.h>
 #include <unistd.h>
 
-int iterations = 10;
+int iterations = 100;
 int max_wrong = 1000;
 int wrong_counter = 0;
 
@@ -35,7 +32,7 @@ int main(){
 
 	//used for random:
 	long timestamp = time(NULL);
-	timestamp = 1508315890;
+//	timestamp = 1508315890;
 	std::cout << "timestamp: " << timestamp << std::endl;
 	srand (timestamp);
 
