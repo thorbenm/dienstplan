@@ -1,3 +1,9 @@
+//TODO:
+//make class with stdev() and dienste_count() as functions; and "="-function
+//check for max_dienste during rota generation (not afterwards)
+//have it warn you if there is a day, thats unsolvable
+//use strictness more often
+
 #include <iostream>
 #include <string>
 #include <stdio.h>
@@ -7,9 +13,9 @@
 #include <math.h>
 #include <unistd.h>
 
-int iterations = 10;
+int iterations = 100;
 int strictness = 0; // low is stricter; default = 0;
-int max_wrong = 5000000;
+int max_wrong = 500;//0000;
 int wrong_counter = 0;
 
 struct hebamme{

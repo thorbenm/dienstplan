@@ -67,7 +67,7 @@ double best_stddev = shifts;
 							goto NEWRANDOM;
 						}else{
 							wrong_counter = 0;
-							std::cerr << "all new at: " << (double) (j+2) / 2.0 << std::endl;
+							//std::cerr << "all new at: " << (double) (j+2) / 2.0 << std::endl;
 							goto ALLNEW;
 						}
 					}
@@ -107,7 +107,7 @@ double best_stddev = shifts;
 							goto NEWRANDOM;
 						}else{
 							wrong_counter = 0;
-							std::cerr << "all new at: " << (double) (j+2) / 2.0 << std::endl;
+							//std::cerr << "all new at: " << (double) (j+2) / 2.0 << std::endl;
 							goto ALLNEW;
 						}
 					}
@@ -132,7 +132,7 @@ double best_stddev = shifts;
 								goto NEWRANDOM;
 							}else{
 								wrong_counter = 0;
-							std::cerr << "all new at: " << (double) (j+2) / 2.0 << std::endl;
+							//std::cerr << "all new at: " << (double) (j+2) / 2.0 << std::endl;
 								goto ALLNEW;
 							}
 						}
@@ -146,7 +146,7 @@ double best_stddev = shifts;
 							goto NEWRANDOM;
 						}else{
 							wrong_counter = 0;
-							std::cerr << "all new at: " << (double) (j+2) / 2.0 << std::endl;
+							//std::cerr << "all new at: " << (double) (j+2) / 2.0 << std::endl;
 							goto ALLNEW;
 						}
 					}
@@ -174,12 +174,12 @@ double best_stddev = shifts;
 		for(int j = 0; j < hebammen.size(); j++){
 			if(hebammen.at(j).max_dienste > -1){
 				if(hebammen.at(j).max_dienste < hebammen.at(j).dienste){
-					std::cerr << "all new at dineste count" << std::endl;
+					//std::cerr << "all new at dineste count" << std::endl;
 					goto ALLNEW;
 				}
 			}
 			if(hebammen.at(j).nachtdienste > (hebammen.at(j).dienste + 1) / 2 + strictness){
-				std::cerr << "all new at nachtdienste" << std::endl;
+				//std::cerr << "all new at nachtdienste" << std::endl;
 				goto ALLNEW;
 			}
 		}
@@ -278,6 +278,13 @@ double best_stddev = shifts;
 				std::cout << "N";
 			}else{
 				std::cout << " ";
+			}
+		}
+		//spacer:
+		std::cout << std::endl;
+		if(i<hebammen.size()-1){
+			for(int j = 0; j < max_length + 2 + 1 + 10 + 3*days;j++){ 
+				std::cout<< "-";
 			}
 		}
 		std::cout << std::endl;
