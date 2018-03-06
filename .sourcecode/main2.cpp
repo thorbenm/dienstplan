@@ -101,7 +101,7 @@ std::vector<int> wrong_counter_all(shifts);
 
 			NEWRANDOM:rnd = rand() % hebammen.size(); 	
 			for(int jj = 0; jj < wrong_counter_all.size() ; jj++){
-				if (wrong_counter_all.at(jj) > 100000){
+				if (wrong_counter_all.at(jj) > 1000000){
 					std::cerr << "Can not find somebody for rota = " << j << std::endl;
 					exit(0);
 				}
@@ -174,7 +174,7 @@ std::vector<int> wrong_counter_all(shifts);
 								break;
 							}
 						}
-						if(counter > 1 + strictness){
+						if(counter > 1){
 							wrong_counter++;
 							wrong_counter_all.at(j)++;
 							if(wrong_counter < max_wrong){
@@ -205,6 +205,18 @@ std::vector<int> wrong_counter_all(shifts);
 							goto NEWRANDOM;
 						}else{
 							goto ALLNEW;
+						}
+					}
+			// nachtschicht:
+				if(j % 2 == 1){
+					if( (double) hebammen.at(rnd).nachtdienste + 1.0  > ( (double) hebammen.at(rnd).max_dienste + 1.0 ) / 2.0){			
+							wrong_counter++;
+							wrong_counter_all.at(j)++;
+							if(wrong_counter < max_wrong){
+								goto NEWRANDOM;
+							}else{
+								goto ALLNEW;
+							}
 						}
 					}
 
