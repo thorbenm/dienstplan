@@ -3,9 +3,10 @@
 
 	int shifts = days * 2; //hardcoded to two shifts
 std::vector<int> rota(shifts);
+std::vector<int> wrong_counter_all(shifts);
 //used to choose best rota:
-std::vector<int> best_rota(shifts);
-double best_stddev = shifts;
+//std::vector<int> best_rota(shifts);
+//double best_stddev = shifts;
 
 	//transfer userfriendly freiwuensche data to rota_exceptions:
 	for(int heb = 0; heb < hebammen.size() ; heb++){
@@ -46,16 +47,22 @@ double best_stddev = shifts;
 	std::cout << std::endl;
 
 	//generate rota:
-	for(int step = 0; step < iterations ; step++){
+//	for(int step = 0; step < iterations ; step++){
 
-		ALLNEW:for(int j = 0; j<rota.size();j++){
-			wrong_counter = 0;
+		ALLNEW: wrong_counter = 0;
+			for(int j = 0; j<rota.size();j++){
 			int rnd = 0;
 //			rnd = rand() % hebammen.size(); 	
 //			NEWRANDOM:rnd++;	
 //			rnd = rnd % hebammen.size(); 	
 
 			NEWRANDOM:rnd = rand() % hebammen.size(); 	
+			for(int jj = 0; jj < wrong_counter_all.size() ; jj++){
+				if (wrong_counter_all.at(jj) > 1000000){
+					std::cerr << "Can not find somebody for rota = " << j << std::endl;
+					exit(0);
+				}
+			}
 	
 			//criteria:
 			//not day and night after one another:
@@ -63,11 +70,10 @@ double best_stddev = shifts;
 				if(j>0){
 					if(rota.at(j-1) == rnd){
 						wrong_counter++;
+						wrong_counter_all.at(j)++;
 						if(wrong_counter < max_wrong){
 							goto NEWRANDOM;
 						}else{
-							wrong_counter = 0;
-							//std::cerr << "all new at: " << (double) (j+2) / 2.0 << std::endl;
 							goto ALLNEW;
 						}
 					}
@@ -103,11 +109,10 @@ double best_stddev = shifts;
 					}
 					if(cc > 2){
 						wrong_counter++;
+						wrong_counter_all.at(j)++;
 						if(wrong_counter < max_wrong){
 							goto NEWRANDOM;
 						}else{
-							wrong_counter = 0;
-							//std::cerr << "all new at: " << (double) (j+2) / 2.0 << std::endl;
 							goto ALLNEW;
 						}
 					}
@@ -128,11 +133,10 @@ double best_stddev = shifts;
 						}
 						if(counter > 1 + strictness){
 							wrong_counter++;
+							wrong_counter_all.at(j)++;
 							if(wrong_counter < max_wrong){
 								goto NEWRANDOM;
 							}else{
-								wrong_counter = 0;
-							//std::cerr << "all new at: " << (double) (j+2) / 2.0 << std::endl;
 								goto ALLNEW;
 							}
 						}
@@ -142,11 +146,10 @@ double best_stddev = shifts;
 				for (int fr = 0; fr < hebammen.at(rnd).rota_exceptions.size(); fr++){
 					if(hebammen.at(rnd).rota_exceptions.at(fr) == j){
 						wrong_counter++;
+						wrong_counter_all.at(j)++;
 						if(wrong_counter < max_wrong){
 							goto NEWRANDOM;
 						}else{
-							wrong_counter = 0;
-							//std::cerr << "all new at: " << (double) (j+2) / 2.0 << std::endl;
 							goto ALLNEW;
 						}
 					}
@@ -170,19 +173,19 @@ double best_stddev = shifts;
 				}
 			}
 		}
-		//check for max_dienste and nachtdienste
-		for(int j = 0; j < hebammen.size(); j++){
-			if(hebammen.at(j).max_dienste > -1){
-				if(hebammen.at(j).max_dienste < hebammen.at(j).dienste){
-					//std::cerr << "all new at dineste count" << std::endl;
-					goto ALLNEW;
-				}
-			}
-			if(hebammen.at(j).nachtdienste > (hebammen.at(j).dienste + 1) / 2 + strictness){
-				//std::cerr << "all new at nachtdienste" << std::endl;
-				goto ALLNEW;
-			}
-		}
+//		//check for max_dienste and nachtdienste
+//		for(int j = 0; j < hebammen.size(); j++){
+//			if(hebammen.at(j).max_dienste > -1){
+//				if(hebammen.at(j).max_dienste < hebammen.at(j).dienste){
+//					//std::cerr << "all new at dineste count" << std::endl;
+//					goto ALLNEW;
+//				}
+//			}
+//			if(hebammen.at(j).nachtdienste > (hebammen.at(j).dienste + 1) / 2 + strictness){
+//				//std::cerr << "all new at nachtdienste" << std::endl;
+//				goto ALLNEW;
+//			}
+//		}
 	
 		//average_dienste:
 		double average_dienste = 0;
@@ -200,35 +203,35 @@ double best_stddev = shifts;
 		stddev = sqrt(stddev);
 	
 		//choose best rota
-		if (stddev < best_stddev){
-			best_rota = rota;
-			best_stddev = stddev;
-		}
+//		if (stddev < best_stddev){
+//			best_rota = rota;
+//			best_stddev = stddev;
+//		}
 
-		//progressbar
-		if(step % (iterations / 10) == 0){
-			std::cout << step * 100 / iterations << "% ... " << std::flush; 
-		}
-		if(step == iterations - 1){
-			std::cout << "100%" << std::endl;
-		}
-	}
+//		//progressbar
+//		if(step % (iterations / 10) == 0){
+//			std::cout << step * 100 / iterations << "% ... " << std::flush; 
+//		}
+//		if(step == iterations - 1){
+//			std::cout << "100%" << std::endl;
+//		}
+//	}
 
-	//count dienste for best rota:
-	for(int j = 0; j < hebammen.size(); j++){
-		hebammen.at(j).dienste = 0;
-		hebammen.at(j).nachtdienste = 0;
-	}
-	for(int j = 0; j < hebammen.size(); j++){
-		for(int i = 0; i < best_rota.size(); i++){
-			if(best_rota.at(i) == j){
-				hebammen.at(j).dienste++;
-				if(i % 2 == 1){
-					hebammen.at(j).nachtdienste++;
-				}
-			}
-		}
-	}
+//	//count dienste for rota:
+//	for(int j = 0; j < hebammen.size(); j++){
+//		hebammen.at(j).dienste = 0;
+//		hebammen.at(j).nachtdienste = 0;
+//	}
+//	for(int j = 0; j < hebammen.size(); j++){
+//		for(int i = 0; i < rota.size(); i++){
+//			if(rota.at(i) == j){
+//				hebammen.at(j).dienste++;
+//				if(i % 2 == 1){
+//					hebammen.at(j).nachtdienste++;
+//				}
+//			}
+//		}
+//	}
 
 	//output:
 	std::cout << std::endl << std::endl;
@@ -272,9 +275,9 @@ double best_stddev = shifts;
 		std::cout << " |";
 		for(int j = 0 ;j < 2 * days; j+=2){
 			std::cout << "  ";	
-			if(best_rota.at(j) == i){
+			if(rota.at(j) == i){
 				std::cout << "T";
-			}else if(best_rota.at(j+1) == i){
+			}else if(rota.at(j+1) == i){
 				std::cout << "N";
 			}else{
 				std::cout << " ";

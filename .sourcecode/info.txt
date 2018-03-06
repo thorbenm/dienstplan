@@ -17,7 +17,7 @@
 	// und passen Sie die Daten auf den aktuellen Monat an:
 	//
 	// Wieviele Tage hat der Monat?
-	days = 22;
+	days = 31;
 	//
 	// Welcher Wochentag ist der erste des Monats? (Zahl)
 	wochentag_vom_ersten = 4;
@@ -38,7 +38,7 @@
 	hebammen.resize(hebammen.size()+1);
 
 	hebammen.back().name = "Anne Hartmann";
-	hebammen.back().freiwuensche_tag = {1,2,3};
+	hebammen.back().freiwuensche_tag = {2,3};
 	hebammen.back().freiwuensche_nacht = {1,2,3};
 	hebammen.back().freiwuensche_wochentag_tag = {0};
 	hebammen.back().freiwuensche_wochentag_nacht = {6,0};
@@ -47,7 +47,7 @@
 //	hebammen.resize(hebammen.size()+1);
 //
 //	hebammen.back().name = "Simone Krug";
-//	hebammen.back().freiwuensche_tag = {};
+//	hebammen.back().freiwuensche_tag = {1};
 //	hebammen.back().freiwuensche_nacht = {};
 //	hebammen.back().freiwuensche_wochentag_tag = {2};
 //	hebammen.back().freiwuensche_wochentag_nacht = {1,2};
@@ -74,7 +74,7 @@
 	hebammen.resize(hebammen.size()+1);
 
 	hebammen.back().name = "Lisa Gessner";
-	hebammen.back().freiwuensche_tag = {1,2,3,4,5,6,7,8,9,10};
+	hebammen.back().freiwuensche_tag = {2,3,4,5,6,7,8,9,10};
 	hebammen.back().freiwuensche_nacht = {1,2,3,4,5,6,7,8,9,10};
 	hebammen.back().freiwuensche_wochentag_tag = {3};
 	hebammen.back().freiwuensche_wochentag_nacht = {2,3};
