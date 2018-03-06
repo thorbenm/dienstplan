@@ -17,7 +17,7 @@
 	// und passen Sie die Daten auf den aktuellen Monat an:
 	//
 	// Wieviele Tage hat der Monat?
-	days = 31;
+	days = 30;
 	//
 	// Welcher Wochentag ist der erste des Monats? (Zahl)
 	wochentag_vom_ersten = 4;

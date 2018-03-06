@@ -45,11 +45,54 @@ std::vector<int> wrong_counter_all(shifts);
 	}
 
 	std::cout << std::endl;
+	
+	//adjust max_dienste:
+	for (int j = 0 ; j < hebammen.size() ; j++){
+		hebammen.at(j).max_dienste--;
+	}
+	int sum_dienste = 0;
+	for (int j = 0 ; j < hebammen.size() ; j++){
+		sum_dienste+=hebammen.at(j).max_dienste;
+	}
+	while(sum_dienste > shifts){
+		//max_max_dienste:
+		int max_max_dienste = 0;
+		for (int j = 0 ; j < hebammen.size() ; j++){
+			if(max_max_dienste < hebammen.at(j).max_dienste){
+				max_max_dienste = hebammen.at(j).max_dienste;
+			}
+		}
+		//subtract:
+		for (int j = 0 ; j < hebammen.size() ; j++){
+			if (max_max_dienste == hebammen.at(j).max_dienste){
+				hebammen.at(j).max_dienste--;
+			}
+		}
+		//recalculate sum:
+		sum_dienste = 0;
+		for (int j = 0 ; j < hebammen.size() ; j++){
+			sum_dienste+=hebammen.at(j).max_dienste;
+		}
+	}
+	// add again:
+	for (int j = 0 ; j < hebammen.size() ; j++){
+		hebammen.at(j).max_dienste++;
+	}
+
+
+
+
+
+
 
 	//generate rota:
 //	for(int step = 0; step < iterations ; step++){
 
 		ALLNEW: wrong_counter = 0;
+		for(int j = 0; j < hebammen.size() ; j ++){
+			hebammen.at(j).dienste = 0;
+			hebammen.at(j).nachtdienste = 0;
+		}
 			for(int j = 0; j<rota.size();j++){
 			int rnd = 0;
 //			rnd = rand() % hebammen.size(); 	
@@ -58,7 +101,7 @@ std::vector<int> wrong_counter_all(shifts);
 
 			NEWRANDOM:rnd = rand() % hebammen.size(); 	
 			for(int jj = 0; jj < wrong_counter_all.size() ; jj++){
-				if (wrong_counter_all.at(jj) > 1000000){
+				if (wrong_counter_all.at(jj) > 100000){
 					std::cerr << "Can not find somebody for rota = " << j << std::endl;
 					exit(0);
 				}
@@ -154,25 +197,37 @@ std::vector<int> wrong_counter_all(shifts);
 						}
 					}
 				}				
-	
+			// exceeded number ob max dienste:
+				if(hebammen.at(rnd).dienste + 1 > hebammen.at(rnd).max_dienste){			
+						wrong_counter++;
+						wrong_counter_all.at(j)++;
+						if(wrong_counter < max_wrong){
+							goto NEWRANDOM;
+						}else{
+							goto ALLNEW;
+						}
+					}
+
+			//all correct:
 			rota.at(j) = rnd;
+			// count dienste:
+			hebammen.at(rnd).dienste++;
+			if(j % 2 == 1){
+				hebammen.at(rnd).nachtdienste++;
+			}
 		}
 	
 		//count dienste:
-		for(int j = 0; j < hebammen.size(); j++){
-			hebammen.at(j).dienste = 0;
-			hebammen.at(j).nachtdienste = 0;
-		}
-		for(int j = 0; j < hebammen.size(); j++){
-			for(int i = 0; i < rota.size(); i++){
-				if(rota.at(i) == j){
-					hebammen.at(j).dienste++;
-					if(i % 2 == 1){
-						hebammen.at(j).nachtdienste++;
-					}
-				}
-			}
-		}
+//		for(int j = 0; j < hebammen.size(); j++){
+//			for(int i = 0; i < rota.size(); i++){
+//				if(rota.at(i) == j){
+//					hebammen.at(j).dienste++;
+//					if(i % 2 == 1){
+//						hebammen.at(j).nachtdienste++;
+//					}
+//				}
+//			}
+//		}
 //		//check for max_dienste and nachtdienste
 //		for(int j = 0; j < hebammen.size(); j++){
 //			if(hebammen.at(j).max_dienste > -1){
