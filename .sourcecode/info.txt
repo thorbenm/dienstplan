@@ -20,7 +20,7 @@
 	days = 31;
 	//
 	// Welcher Wochentag ist der erste des Monats? (Zahl)
-	wochentag_vom_ersten = 4;
+	wochentag_vom_ersten = 2;
 	//
 	// Um die Daten zu speichern und den Diensplan zu generieren
 	// drücken Sie Ctrl x, dann y, dann Enter.

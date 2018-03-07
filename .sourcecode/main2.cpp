@@ -341,11 +341,14 @@ std::vector<int> wrong_counter_all(shifts);
 			std::cout << " ";
 		}
 		std::cout << " "  << j+1;
+		if(j % 7 == 6 - wochentag_vom_ersten){
+			std::cout << "|";
+		}
 	}
 	std::cout << std::endl;
 
 	//spacer:
-	for(int j = 0; j < max_length + 2 + 1 + 10 + 3*days;j++){ 
+	for(int j = 0; j < max_length + 2 + 1 + 10 + 3*days + 4;j++){ 
 		std::cout<< "=";
 	}
 	std::cout << std::endl;
@@ -371,11 +374,14 @@ std::vector<int> wrong_counter_all(shifts);
 			}else{
 				std::cout << " ";
 			}
+			if(j % 14 == 12 - 2*wochentag_vom_ersten){
+				std::cout << "|";
+			}
 		}
 		//spacer:
 		std::cout << std::endl;
 		if(i<hebammen.size()-1){
-			for(int j = 0; j < max_length + 2 + 1 + 10 + 3*days;j++){ 
+			for(int j = 0; j < max_length + 2 + 1 + 10 + 3*days + 4;j++){ 
 				std::cout<< "-";
 			}
 		}
