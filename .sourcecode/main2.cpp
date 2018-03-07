@@ -117,7 +117,14 @@ std::vector<int> wrong_counter_all(shifts);
 //			NEWRANDOM:rnd = rand() % hebammen.size(); 	
 			for(int jj = 0; jj < wrong_counter_all.size() ; jj++){
 				if (wrong_counter_all.at(jj) > 1000000){
-					std::cerr << "Can not find somebody for rota = " << j << std::endl;
+					std::cerr << "Es konnte niemand fuer den ";
+					if(j % 2 == 1){
+						std::cerr << "Nacht";
+					}else{
+						std::cerr << "Tag";
+					}
+					std::cerr << "dienst am " << (j+2) / 2 << ". gefunden werden!" << std::endl;
+					std::cerr << "Bitte passen Sie die Daten an!" << std::endl;
 					exit(0);
 				}
 			}
