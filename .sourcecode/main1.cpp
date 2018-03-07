@@ -1,5 +1,9 @@
 //TODO:
 //weekends
+//	generate critical shifts
+//	if is in critical shift
+//	counter: if first of four in critical shift ++
+//	if second,... check if first is shift already, then not ++ otherwise ++
 
 #include <iostream>
 #include <string>

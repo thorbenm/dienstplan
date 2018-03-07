@@ -167,6 +167,10 @@ std::vector<int> wrong_counter_all(shifts);
 					}else{
 						check_for = 7;
 					}
+	//		//new try, which spreads it better
+//				if(j>10){
+//					int cc = 0;
+//					int check_for= 10;
 					for (int jj = j - check_for; jj < j; jj++){
 						if(rnd == rota.at(jj)){
 							cc++;
