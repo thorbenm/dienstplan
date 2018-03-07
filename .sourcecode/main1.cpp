@@ -1,6 +1,5 @@
 //TODO:
 //weekends
-//weighted randomness
 
 #include <iostream>
 #include <string>

@@ -65,8 +65,8 @@
 	hebammen.resize(hebammen.size()+1);
 
 	hebammen.back().name = "Luica Bertram";
-	hebammen.back().freiwuensche_tag = {9,10,11,12,13,14,15,16,17,18,19,20,21,22};
-	hebammen.back().freiwuensche_nacht = {8,9,10,11,12,13,14,15,16,17,18,19,20,21,22};
+	hebammen.back().freiwuensche_tag = {};
+	hebammen.back().freiwuensche_nacht = {};
 	hebammen.back().freiwuensche_wochentag_tag = {1};
 	hebammen.back().freiwuensche_wochentag_nacht = {0,1};
 	hebammen.back().max_dienste = 14;

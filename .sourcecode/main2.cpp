@@ -85,8 +85,6 @@ std::vector<int> wrong_counter_all(shifts);
 
 
 
-	//generate rota:
-//	for(int step = 0; step < iterations ; step++){
 
 		ALLNEW: wrong_counter = 0;
 		for(int j = 0; j < hebammen.size() ; j ++){
@@ -98,8 +96,25 @@ std::vector<int> wrong_counter_all(shifts);
 //			rnd = rand() % hebammen.size(); 	
 //			NEWRANDOM:rnd++;	
 //			rnd = rnd % hebammen.size(); 	
-
-			NEWRANDOM:rnd = rand() % hebammen.size(); 	
+//			
+//			weighted random:
+			NEWRANDOM:
+			int sum_of_weights = 0;
+			int num_of_weights = hebammen.size();
+			std::vector<int> weights(num_of_weights);
+			for( int jj = 0; jj < num_of_weights; jj++){
+				sum_of_weights += hebammen.at(jj).max_dienste;
+				weights.at(jj) = hebammen.at(jj).max_dienste;
+			}
+			int weighted_rnd = rand() % sum_of_weights; 	
+			for(int jj=0; jj<num_of_weights; jj++) {
+				if(weighted_rnd < weights.at(jj)){
+					rnd = jj;
+					break;
+				}
+			 	weighted_rnd -= weights.at(jj);
+			}
+//			NEWRANDOM:rnd = rand() % hebammen.size(); 	
 			for(int jj = 0; jj < wrong_counter_all.size() ; jj++){
 				if (wrong_counter_all.at(jj) > 1000000){
 					std::cerr << "Can not find somebody for rota = " << j << std::endl;
